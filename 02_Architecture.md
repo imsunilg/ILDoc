@@ -6,7 +6,7 @@ Diagram: [diagrams/overall-architecture.md](diagrams/overall-architecture.md)
 
 ```text
 Browser
- └── Flutter web app  (shell)  ── http://localhost:8080 (dev)
+ └── Flutter web app  (shell)  ── http://localhost:8090 (dev)
        ├── Flutter pages: login, dashboard, Motor, Home, lists, profile
        └── iframe ──► Angular web app (modules) ── http://localhost:4200 (dev)
                          ├── /travel      /travel/result

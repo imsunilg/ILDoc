@@ -74,7 +74,7 @@ Opened directly, the app only says it must be opened from the portal.
 $env:Path += ";C:\src\flutter\bin"
 cd ILWEBFlutter
 flutter pub get
-flutter run -d chrome --web-port 8080      # http://localhost:8080
+flutter run -d chrome --web-port 8090      # http://localhost:8090
 flutter analyze ; flutter test
 ```
 
@@ -87,19 +87,19 @@ Compile-time options (`--dart-define=...`): `APP_ENV` (`development` default, `q
 | API URL used by Flutter | `lib/core/config.dart` / `--dart-define=API_URL` | `http://localhost:5080` |
 | Angular URL used by Flutter | `--dart-define=ANGULAR_URL` | `http://localhost:4200` |
 | API URL used by Angular | `ILWEBAngular/src/app/core/config.ts` (`API_URL`) | `http://localhost:5080` |
-| Allowed portal origins in Angular | same file (`PORTAL_ORIGINS`) | `http://localhost:8080`, `http://127.0.0.1:8080` |
-| CORS origins in the API | `ILAPI.API/appsettings.json` → `Cors:Origins` | `http://localhost:4200`, `http://localhost:8080` |
+| Allowed portal origins in Angular | same file (`PORTAL_ORIGINS`) | `http://localhost:8090`, `http://127.0.0.1:8090` |
+| CORS origins in the API | `ILAPI.API/appsettings.json` → `Cors:Origins` | `http://localhost:4200`, `http://localhost:8090` |
 
 ## 6. Run everything
 
-Start in this order: PostgreSQL → API (5080) → Angular (4200) → Flutter (8080). Open **http://localhost:8080** and use a "Demo Login" button (development builds only).
+Start in this order: PostgreSQL → API (5080) → Angular (4200) → Flutter (8090). Open **http://localhost:8090** and use a "Demo Login" button (development builds only).
 
 ## 7. Verify
 
 | Check | Command |
 |---|---|
 | API roles and permissions | `ILAPI/scripts/verify-roles.ps1` (add `-ExpiredBase http://localhost:5081` with a second API instance started with `Jwt__AccessMinutes=-2` to test expiry) |
-| Browser end-to-end | `flutter build web`, serve `build/web` on 8080, then `node ILWEBFlutter/scripts/e2e-portal.mjs <Role> <screenshotDir>` (needs `puppeteer-core` installed next to the script) |
+| Browser end-to-end | `flutter build web`, serve `build/web` on 8090, then `node ILWEBFlutter/scripts/e2e-portal.mjs <Role> <screenshotDir>` (needs `puppeteer-core` installed next to the script) |
 
 ## Secrets handling
 

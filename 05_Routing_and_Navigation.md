@@ -40,7 +40,7 @@ There are no `/motor/quote` or `/home/quote` sub-routes: the quote form *is* the
 
 ### URL style
 
-`usePathUrlStrategy()` in `lib/main.dart` gives `http://localhost:8080/liability` (not `/#/liability`). Consequence: the host must serve `index.html` for unknown paths (the local static server and `flutter run` do).
+`usePathUrlStrategy()` in `lib/main.dart` gives `http://localhost:8090/liability` (not `/#/liability`). Consequence: the host must serve `index.html` for unknown paths (the local static server and `flutter run` do).
 
 ## Angular routes (verified from `app.routes.ts`)
 

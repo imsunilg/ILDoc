@@ -4,7 +4,7 @@ Verified against the code: Flutter is the shell; Angular is loaded into it as an
 
 ```mermaid
 flowchart TD
-    User([User in browser]) --> Flutter["Flutter web shell<br/>ILWEBFlutter (port 8080)"]
+    User([User in browser]) --> Flutter["Flutter web shell<br/>ILWEBFlutter (port 8090)"]
 
     subgraph Shell["Flutter owns"]
         Login[Login]

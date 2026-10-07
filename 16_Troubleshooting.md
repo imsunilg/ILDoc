@@ -13,13 +13,13 @@ Format: **Symptom → Possible cause → How to verify → Solution.**
 | Flutter does not start | SDK not on `PATH`, web not enabled | `flutter doctor`; `flutter config` | add `C:\src\flutter\bin`; `flutter config --enable-web`; `flutter pub get` |
 | `flutter run -d web-server` page blank in a headless browser | debug build needs the tool's debug connection (Issue 14) | console `Library not defined` | use `flutter run -d chrome` or serve a release build |
 | Angular does not start | wrong Node version, `npm install` not run, port 4200 busy | `node -v`; `npm ls @angular/core`; `Get-NetTCPConnection -LocalPort 4200` | install deps; free the port or `ng serve --port` (then update `ANGULAR_URL` and API CORS) |
-| `http://localhost:8080` shows something unrelated | Apache `httpd` on IPv4 8080 (Issue 15) | `Get-NetTCPConnection -LocalPort 8080` | stop it or use another port consistently |
+| The portal URL shows "Server is up and running." or something unrelated | another program (e.g. the Apache `httpd` from the PostgreSQL install) owns the port on IPv4 while Flutter is on IPv6 (Issue 15) | `Get-NetTCPConnection -LocalPort 8090` shows who listens | use a free port: `flutter run --web-port <port>` and update `Cors:Origins` and Angular `PORTAL_ORIGINS` (the project uses **8090**) |
 
 ## API / authentication
 
 | Symptom | Possible cause | Verify | Solution |
 |---|---|---|---|
-| Browser console: CORS error from `localhost:8080`/`4200` | origin not in `Cors:Origins`; API not restarted | response lacks `Access-Control-Allow-Origin`; `curl -H "Origin: …"` | add the origin to `appsettings.json` / env var and restart |
+| Browser console: CORS error from `localhost:8090`/`4200` | origin not in `Cors:Origins`; API not restarted | response lacks `Access-Control-Allow-Origin`; `curl -H "Origin: …"` | add the origin to `appsettings.json` / env var and restart |
 | Everything returns 401 | expired access token, wrong `Jwt:Key` after a restart with a different key, clock skew | decode the JWT (`exp`, `iss`, `aud`); compare keys | log in again; use one stable key per environment |
 | 403 on a page the menu shows | stale permissions in the JWT, or seed changed | decode `permission` claims; compare with `GET /api/v1/auth/me` | log out/in; fix `role_permissions` |
 | Login: "Invalid username or password" for a demo user | demo users not seeded (`ILPORTAL_ENV=Production` or `08` not run) | `select username from auth.users` | re-run `run_all.ps1` without `ILPORTAL_ENV` |
@@ -33,7 +33,7 @@ Format: **Symptom → Possible cause → How to verify → Solution.**
 | Travel/Liability area shows "Session unavailable" | handoff failed: origin mismatch, API down, token expired | iframe console; network call `POST /api/v1/frontend-session` and `/auth/handoff/exchange` | make `ANGULAR_URL` and Angular `PORTAL_ORIGINS` match the real origins; check CORS |
 | Area stays "Loading…" | Flutter never answered `il-ready` (listener missing or origin check failed) | Flutter console | confirm `angularOrigin` equals the iframe origin exactly (scheme + host + port) |
 | iframe is blank / refused | host sends `X-Frame-Options: DENY` or CSP blocks framing | iframe network response headers | allow framing from the Flutter origin only |
-| Angular page says "This module runs inside the portal" | opened directly at `:4200` | — | open the portal at `:8080` |
+| Angular page says "This module runs inside the portal" | opened directly at `:4200` | — | open the portal at `:8090` |
 | **Angular header appears** | an old Angular build with the portal shell is being served | view source / DOM of the iframe | rebuild/restart Angular; `app.ts` must only contain the router outlet |
 | **Duplicate dashboard** | same as above, or Flutter route `/dashboard` plus a stale Angular dashboard route | check `app.routes.ts` has no dashboard route | remove stale build output (`dist/`, `.angular/cache`) |
 | Wrong colours / seam between Flutter and Angular | palettes out of sync | compare `app_theme.dart` and `styles.css` variables | align the values; iframe background in `angular_module_view_web.dart` |

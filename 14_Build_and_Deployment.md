@@ -28,7 +28,7 @@ Flutter and Angular may share a host with different paths **only if** `ANGULAR_U
 
 | Setting | Dev (current) | QA / UAT / Production |
 |---|---|---|
-| `Cors:Origins` (API) | `http://localhost:4200`, `http://localhost:8080` | the real Flutter and Angular origins (env var `Cors__Origins__0`, …) |
+| `Cors:Origins` (API) | `http://localhost:4200`, `http://localhost:8090` | the real Flutter and Angular origins (env var `Cors__Origins__0`, …) |
 | `ConnectionStrings:PostgreSQL` | user-secrets | secret store / `ConnectionStrings__PostgreSQL` |
 | `Jwt:Key` | user-secrets | secret store / `Jwt__Key` (≥ 32 chars, unique per environment) |
 | `Jwt:Issuer`, `Jwt:Audience`, lifetimes | `ILAPI`, `ILPortal`, 15 min / 14 d / 60 s | same unless policy changes |

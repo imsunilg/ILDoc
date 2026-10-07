@@ -71,4 +71,4 @@ See [04_Authentication_Flow.md](04_Authentication_Flow.md) §Logout. Flutter log
 
 - `postMessage` replies are origin-checked on both sides. The Flutter side does **not** compare `event.source` (touching the cross-origin window object throws a `SecurityError` in Dart); the origin check is the control there.
 - The iframe is created with the default sandbox (none). If you add a `sandbox` attribute, include `allow-scripts allow-same-origin`.
-- `PORTAL_ORIGINS` is hard-coded to `http://localhost:8080` / `http://127.0.0.1:8080`; it must be changed per environment (see [14](14_Build_and_Deployment.md)).
+- `PORTAL_ORIGINS` is hard-coded to `http://localhost:8090` / `http://127.0.0.1:8090`; it must be changed per environment (see [14](14_Build_and_Deployment.md)).

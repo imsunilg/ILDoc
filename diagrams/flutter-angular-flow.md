@@ -4,7 +4,7 @@
 flowchart LR
     subgraph Browser["One browser tab"]
         direction TB
-        subgraph FL["Flutter web app (http://localhost:8080)"]
+        subgraph FL["Flutter web app (http://localhost:8090)"]
             Hdr["Header + top navigation (PortalShell)"]
             Content["Content area"]
             View["AngularModuleView<br/>registers an iframe platform view"]

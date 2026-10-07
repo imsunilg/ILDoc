@@ -66,7 +66,7 @@ Diagrams (Mermaid): [overall architecture](diagrams/overall-architecture.md) · 
 cd ILDB;  $env:PGPASSWORD="<pw>"; ./run_all.ps1
 cd ILAPI; dotnet run --project ILAPI.API --urls http://localhost:5080
 cd ILWEBAngular; npm install; npm start                       # :4200
-cd ILWEBFlutter; flutter run -d chrome --web-port 8080        # :8080  → open this
+cd ILWEBFlutter; flutter run -d chrome --web-port 8090        # :8090  → open this
 ```
 
 ## Conventions and safety

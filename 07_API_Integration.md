@@ -90,7 +90,7 @@ Authorization: Bearer <jwt>
 
 ## CORS
 
-`appsettings.json` → `Cors:Origins`: `http://localhost:4200`, `http://localhost:8080`. Add the deployed Flutter and Angular origins per environment.
+`appsettings.json` → `Cors:Origins`: `http://localhost:4200`, `http://localhost:8090`. Add the deployed Flutter and Angular origins per environment.
 
 ## Configuration and secrets
 
