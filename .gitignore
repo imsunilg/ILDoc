@@ -1,0 +1,11 @@
+﻿# local-only: the original bootstrap prompt contains a database password
+00_DB_and_GitHub_Bootstrap_Prompt.md
+
+# secrets
+.env
+*.local.json
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
